@@ -8,7 +8,6 @@ const PORT = process.env.PORT || 3000
 
 const start = async () => {
     try {
-        const a = arguments[1]
         await sequelize.authenticate()
         await sequelize.sync()
         app.listen(PORT, () => console.log(`App is listening on http://localhost:${PORT}`))
