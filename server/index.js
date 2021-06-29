@@ -1,7 +1,20 @@
+require('dotenv').config()
 const express = require('express')
+const sequelize = require('./db')
 const app = express()
-const pg = require('postgres')
 
 const PORT = process.env.PORT || 3000
 
-app.listen(PORT,()=>console.log(`App is listening on http://localhost:${PORT}`))
+
+const start = async () => {
+    try {
+        const a = arguments[1]
+        await sequelize.authenticate()
+        await sequelize.sync()
+        app.listen(PORT, () => console.log(`App is listening on http://localhost:${PORT}`))
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+start()
